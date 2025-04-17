@@ -49,7 +49,8 @@ Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni-7B](http
 | Audio-Cot(Qwen2-Audio-7B-Instruct)    | \[2\]                 | 61.86     | -     | 56.29     | -     | 55.26     | -     | 57.80     | -     |
 | R1-AQA(Qwen2-Audio-7B-Instruct)       | \[3\]                 | 68.77     | 69.76 | 64.37     | 61.40 | 63.66     | 62.70 | 65.60     | 64.36 |
 | Qwen2.5-Omni-7B                       | \[4\]                 | 67.87     | -     | 69.16     | -     | 59.76     | -     | 65.60     | -     |
-| Ke-Omni-R(Qwen2.5-Omni-7B)            | GRPO(ours)            | **69.37** | **71.90** | 69.46 | 67.13 |**67.87**  | 67.10 | **68.90** |**68.71** |
+| Ke-Omni-R(Qwen2.5-Omni-7B)            | GRPO w/o think (ours) | **69.67** | 70.57 | 67.66 | 64.00 |66.37  | 67.17 | 67.90 |67.24 |
+| Ke-Omni-R(Qwen2.5-Omni-7B)            | GRPO w/ think (ours)  | 69.37 | **71.90** | 69.46 | 67.13 |**67.87**  | 67.10 | **68.90** |**68.71** |
 
 Note:
 - \* The data are sourced from the [MMAU leaderboard](https://sakshi113.github.io/mmau_homepage/#leaderboard).
@@ -62,6 +63,7 @@ Note:
 
 - [x] 2025/04
     - [x] [Ke-Omni-R](https://huggingface.co/KE-Team/Ke-Omni-R) models released
+    - [x] Testing codes released
 
 - [ ] 2025/04
     - [ ] Training codes release
@@ -69,12 +71,19 @@ Note:
 
 ## Quickstart
 ### Installation
+- Docker(Strongly Recommended)
+
+We strongly recommend using the official Docker image for ease of deployment [qwenllm/qwen-omni](https://hub.docker.com/r/qwenllm/qwen-omni)
+
+- From Source
+
 The codebase for Qwen2.5-Omni is integrated into the latest Hugging Face `transformers` library. It is recommended to build from the source using the following commands:
 ```
 pip uninstall transformers
 pip install git+https://github.com/huggingface/transformers
 pip install accelerate
 ```
+
 ### First Demo
 ```python
 from transformers import Qwen2_5OmniForConditionalGeneration, Qwen2_5OmniProcessor
@@ -159,7 +168,7 @@ python src/utils/prepare_mmau.py \
 Run the evaluation script:
 ```bash
 # Test MMAU test-mini every 100 steps. Modify the script to test other steps or parameters if needed.
-sh test_mmau.sh
+bash test_mmau.sh exp/model  100 200 300
 ```
 ---
 ## Acknowledgements
