@@ -12,7 +12,7 @@ Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni-7B](http
 
 
 ## News
-- April 16, 2025: Released model [🤗 Ke-Omni-R](https://huggingface.co/KE-Team/Ke-Omni-R)
+- April 17, 2025: Released model [🤗 Ke-Omni-R](https://huggingface.co/KE-Team/Ke-Omni-R)
 
 ---
 ## Content
@@ -22,6 +22,7 @@ Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni-7B](http
 - [Roadmap](#roadmap)
 - [Quickstart](#quickstart)
   - [Installation](#installation)
+  - [First Demo](#first-demo)
 - [Training (codes coming soon)](#trainingcodes-coming-soon)
   - [Training Data](#training-data)
   - [Training Strategy](#training-strategy)
@@ -74,6 +75,40 @@ pip uninstall transformers
 pip install git+https://github.com/huggingface/transformers
 pip install accelerate
 ```
+### First Demo
+```python
+from transformers import Qwen2_5OmniForConditionalGeneration, Qwen2_5OmniProcessor
+from qwen_omni_utils import process_mm_info
+
+# You can directly insert a local file path, a URL, or a base64-encoded audio into the position where you want in the text.
+messages = [
+  # Audio
+    ## Local audio path
+    [{"role": "system", "content":[{"type": "text", "text": "You are Qwen, a virtual human developed by the Qwen Team, Alibaba Group, capable of perceiving auditory and visual inputs, as well as generating text and speech."}]},
+     {"role": "user", "content": [{"type": "audio", "audio": "/path_to_avqa_wavs/-IBtBeR6B00_000000.wav"}, {"type": "text", "text": "Please describe this audio."}]}],
+    [{"role": "user", "content": [{"type": "audio", "audio": "/path_to_avqa_wavs/-IBtBeR6B00_000000.wav"}, {"type": "text", "text": "What is the main source of sound in the audio? ['aircraft', 'Car', 'Tank', 'Missile'] Output the thinking process (less than 50 words) in <think> </think> and final answer in <answer> </answer>."}]}],
+    [{"role": "user", "content": [{"type": "audio", "audio": "/path_to_avqa_wavs/-IBXTktoom8_000030.wav"}, {"type": "text", "text": "What animal is the main source of sound in the video? ['dog', 'wasp', 'honeybee', 'dragonfly'] Output the thinking process (less than 50 words) in <think> </think> and final answer in <answer> </answer>."}]}],
+]
+
+model = Qwen2_5OmniForConditionalGeneration.from_pretrained('KE-Team/Ke-Omni-R')
+processor = Qwen2_5OmniProcessor.from_pretrained(model_path)
+
+text = processor.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+print(text)
+audios, images, videos = process_mm_info(messages, use_audio_in_video=False)
+inputs = processor(text=text, images=images, videos=videos, audio=audios, padding=True, return_tensors="pt")
+
+generation = model.generate(**inputs, thinker_temperature=0, thinker_do_sample=False)
+generated_ids = generation[:, inputs.input_ids.size(1):]
+completions = processor.batch_decode(generated_ids, skip_special_tokens=True)
+print(completions)
+```
+
+the output should be
+```
+["Well, it sounds like there's a car accelerating. You can hear the engine revving up, and there's a bit of a thump or thud sound too. It might be the car hitting something or just a part of the acceleration process. It gives off a sense of speed and power. What do you think about it? Do you have any other audio samples you want to talk about?", '<think>The audio features a vehicle accelerating and revving, which is characteristic of a car. The sound is consistent with a car engine, not an aircraft, tank, or missile.</think>\n<answer>Car</answer>', "<think>The main source of sound is a buzzing insect, which is consistent with the size and sound of a honeybee. The other options don't match the sound or context.</think>\n<answer>honeybee</answer>"]
+```
+
 ---
 ## Training(codes coming soon)
 ### Training Data
