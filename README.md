@@ -1,5 +1,5 @@
 # Ke-Omni-R: Achieving Advanced Audio Reasoning with a Concise 50-Words Think Process
-
+![GitHub](https://img.shields.io/github/license/shuaijiang/Ke-Omni-R)
 [![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-Ke--Omni--R-blue.svg)](https://huggingface.co/KE-Team/Ke-Omni-R/)
 
 ## Introduction
