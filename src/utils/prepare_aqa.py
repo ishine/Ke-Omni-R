@@ -30,8 +30,8 @@ def create_data(input_file, audio_path, output_file):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_file", type=str, required=True)
+    parser.add_argument("--input", type=str, required=True)
     parser.add_argument("--audio_path", type=str, required=True)
-    parser.add_argument("--output_file", type=str, required=True)
+    parser.add_argument("--output", type=str, required=True)
     args = parser.parse_args()
     create_data(args.input_file, args.audio_path, args.output_file)
