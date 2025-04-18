@@ -13,6 +13,7 @@ Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni-7B](http
 
 ## News
 - April 17, 2025: Released model [🤗 Ke-Omni-R](https://huggingface.co/KE-Team/Ke-Omni-R)
+- April 18, 2025: Released training codes!
 
 ---
 ## Content
@@ -63,10 +64,10 @@ Note:
 
 - [x] 2025/04
     - [x] [Ke-Omni-R](https://huggingface.co/KE-Team/Ke-Omni-R) models released
-    - [x] Testing codes released
+    - [x] Testing codes released    
+    - [x] Training codes release
 
 - [ ] 2025/04
-    - [ ] Training codes release
     - [ ] Training data release
 
 ## Quickstart
@@ -74,6 +75,10 @@ Note:
 - Docker(Strongly Recommended)
 
 We strongly recommend using the official Docker image for ease of deployment [qwenllm/qwen-omni](https://hub.docker.com/r/qwenllm/qwen-omni)
+And then
+```
+pip install -r requirements.txt
+```
 
 - From Source
 
