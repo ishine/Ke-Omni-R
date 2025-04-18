@@ -1,11 +1,8 @@
 #!/bin/bash
 
-OUT_DIR=exp/qwen_omni_base689_avqa5k_music5k_think50_reward_weight2_1_g4_beta001_test
-#MODEL_NP=/mnt/bella/models/Qwen/Qwen2.5-Omni-7B/
-#MODEL_NP=/nfs/172.17.1.38/nvme4/zhaoshuaijiang/models/Qwen2.5-Omni-7B/
-MODEL_NP=/nfs/172.17.1.38/nvme4/zhaoshuaijiang/codes/r1-aqa/exp/qwen_omni_base679_avqa5k_music5k_think50_reward_weight2_1_g4_beta001/Qwen2.5-Omni/
+OUT_DIR=exp/model
+MODEL_NP=path/of/model/Qwen2.5-Omni/
 DATA_FILE=data/avaq_shuf5000.music_shuf5000.jsonl
-#DATA_FILE=data/avaq_shuf12k_music_shuf12k.jsonl
 
 GPU_NUM=$(nvidia-smi -L | wc -l)
 NODE_NUM=1

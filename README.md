@@ -25,7 +25,7 @@ Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni-7B](http
   - [Installation](#installation)
   - [First Demo](#first-demo)
 - [Training (codes coming soon)](#trainingcodes-coming-soon)
-  - [Training Data](#training-data)
+  - [Training Data](#training-data-preparation)
   - [Training Strategy](#training-strategy)
 - [Testing on MMAU](#testing-on-mmau)
   - [Step 1: Download Dataset](#step-1-download-dataset)
@@ -65,7 +65,7 @@ Note:
 - [x] 2025/04
     - [x] [Ke-Omni-R](https://huggingface.co/KE-Team/Ke-Omni-R) models released
     - [x] Testing codes released    
-    - [x] Training codes release
+    - [x] Training codes released
 
 - [ ] 2025/04
     - [ ] Training data release
@@ -124,20 +124,25 @@ the output should be
 ```
 
 ---
-## Training(codes coming soon)
-### Training Data
+## Training
+### Training Data Preparation
 Ke-Omni-R was trained on two datasets:
 - **AVQA**: 5k randomly selected samples.
 - **MusicBench**: 5k randomly selected samples.
 
+Preparation of AVQA
+```
+python src/utils/prepare_aqa.py --input path/to/avqa/train_qa.json --audio_path path/to/avqa/audios --output data/avqa_train.json
+```
+
 ### Training Strategy
-- **Weighted GRPO Training**: Accuracy and format reward functions are weighted at a ratio of 2:1.
+- **Weighted GRPO Training**: Accuracy and format reward functions are weighted at a ratio of 2:1 (set rewards_weight to [2, 1]).
 - **Think Process**: A concise think process (less than 50 words) was included during training. The output format is as follows:
   ```
   <think> Thinking process (less than 50 words) </think>
   <answer> Final answer </answer>
   ```
-- **KL Divergence**: Applied during GRPO training to slightly improve performance.
+- **KL Divergence**: Applied during GRPO training to slightly improve performance (set beta to 0.01).
 
 
 ## Testing on MMAU
