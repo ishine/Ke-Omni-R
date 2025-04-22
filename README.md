@@ -194,7 +194,7 @@ We express our gratitude to the following projects and teams for their contribut
 ## Citation
 ```bib
 @misc{zhao2025keomnir,
-  author = {Zhao, Shuaijiang and Guo, Tingwei and Wen, Cheng and Xiang, Bajian and Zou, Wei},
+  author = {Zhao, Shuaijiang and Guo, Tingwei and Wen, Cheng and Xiang, Bajian and Zou, Wei and Li, Xiangang},
   title = {Ke-Omni-R: Achieving Advanced Audio Reasoning with a Concise 50-Words Think Process},
   year = {2025},
   publisher = {GitHub},

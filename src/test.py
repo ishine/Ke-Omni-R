@@ -9,7 +9,7 @@ import torch
 import transformers
 from tqdm import tqdm
 from transformers import HfArgumentParser
-from transformers import Qwen2_5OmniForConditionalGeneration, Qwen2_5OmniProcessor
+from transformers import Qwen2_5OmniThinkerForConditionalGeneration, Qwen2_5OmniProcessor
 from qwen_omni_utils import process_mm_info
 
 @dataclass
@@ -70,7 +70,7 @@ def main():
         return
 
     qwen2_omni_processor = Qwen2_5OmniProcessor.from_pretrained(data_args.model_path)
-    qwen2_omni_model = Qwen2_5OmniForConditionalGeneration.from_pretrained(
+    qwen2_omni_model = Qwen2_5OmniThinkerForConditionalGeneration.from_pretrained(
         data_args.model_path, torch_dtype=torch.bfloat16, device_map="auto"
     )
 
