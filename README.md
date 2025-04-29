@@ -14,6 +14,7 @@ Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni-7B](http
 ## News
 - April 17, 2025: Released model [🤗 Ke-Omni-R](https://huggingface.co/KE-Team/Ke-Omni-R)
 - April 18, 2025: Released training codes!
+- April 29, 2025: Released prepareing data codes!
 
 ---
 ## Content
@@ -66,6 +67,7 @@ Note:
     - [x] [Ke-Omni-R](https://huggingface.co/KE-Team/Ke-Omni-R) models released
     - [x] Testing codes released    
     - [x] Training codes released
+    - [x] Preparing data codes released
 
 - [ ] 2025/04
     - [ ] Training data release
