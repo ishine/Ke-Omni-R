@@ -3,7 +3,7 @@
 [![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-Ke--Omni--R-blue.svg)](https://huggingface.co/KE-Team/Ke-Omni-R/)
 
 ## Introduction
-Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni-7B](https://github.com/QwenLM/Qwen2.5-Omni). With only 10k post-training samples, Ke-Omni-R has achieved state-of-the-art performance on the MMAU *Test-mini* and *Test* benchmarks. Key insights from its development include:
+Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni](https://github.com/QwenLM/Qwen2.5-Omni). With only 10k post-training samples, Ke-Omni-R has achieved state-of-the-art performance on the MMAU *Test-mini* and *Test* benchmarks. Key insights from its development include:
 
 - **GRPO Algorithm**: The GRPO algorithm significantly enhances the performance of the already strong base model (Qwen2.5-Omni-7B), demonstrating superior generalization even in unseen speech domains.
 - **Think Process**: Incorporating a concise think process (less than 50 words) plays a crucial role in improving reasoning capabilities.
@@ -12,6 +12,7 @@ Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni-7B](http
 
 
 ## News
+- May 27, 2025: Released model [🤗 Ke-Omni-R-3B](https://huggingface.co/KE-Team/Ke-Omni-R-3B)
 - April 29, 2025: Released preparing data codes!
 - April 18, 2025: Released training codes!
 - April 17, 2025: Released model [🤗 Ke-Omni-R](https://huggingface.co/KE-Team/Ke-Omni-R)
@@ -52,7 +53,9 @@ Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni-7B](http
 | Audio-Cot(Qwen2-Audio-7B-Instruct)    | \[2\]                 | 61.86     | -     | 56.29     | -     | 55.26     | -     | 57.80     | -     |
 | R1-AQA(Qwen2-Audio-7B-Instruct)       | \[3\]                 | 68.77     | 69.76 | 64.37     | 61.40 | 63.66     | 62.70 | 65.60     | 64.36 |
 | Qwen2.5-Omni-7B                       | \[4\]                 | 67.87     | -     | 69.16     | -     | 59.76     | -     | 65.60     | -     |
-| Ke-Omni-R(Qwen2.5-Omni-7B)            | GRPO w/o think (ours) | **69.67** | 70.57 | 67.66 | 64.00 |66.37  | 67.17 | 67.90 |67.24 |
+| Qwen2.5-Omni-3B                       | \[4\]                 | 70.27     | -     | 60.48     | -     | 59.16     | -     | 63.30     | -     |
+| Ke-Omni-R-3B(Qwen2.5-Omni-3B)         | GRPO w/ think (ours) | **72.37** | 71.87 | 65.57 | 59.60 |64.26  | 64.17 | 67.40 |65.17 |
+| Ke-Omni-R(Qwen2.5-Omni-7B)            | GRPO w/o think (ours) | 69.67 | 70.57 | 67.66 | 64.00 |66.37  | 67.17 | 67.90 |67.24 |
 | Ke-Omni-R(Qwen2.5-Omni-7B)            | GRPO w/ think (ours)  | 69.37 | **71.90** | 69.46 | 67.13 |**67.87**  | 67.10 | **68.90** |**68.71** |
 
 Note:
