@@ -23,5 +23,5 @@ torchrun --nproc_per_node=${GPU_NUM} \
     --think True \
     --think_max_len 50 \
     --beta 0.01 \
-    --num_generations 4 \
+    --num_generations 8 \
     --use_wandb false || exit 1
