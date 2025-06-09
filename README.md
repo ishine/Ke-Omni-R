@@ -65,9 +65,18 @@ Note:
 - \[3\] Li, Gang, et al. "Reinforcement Learning Outperforms Supervised Fine-Tuning: A Case Study on Audio Question Answering." arXiv preprint arXiv:2503.11197
 - \[4\] Xu, Jin, et al. "Qwen2.5-Omni Technical Report." arXiv preprint arXiv:2503.20215
 
+## Performance: CER/WER (%) on ASR benchmark
+| Model                 | Method        |  WenetSpeech test-net | WenetSpeech test-meeting | LibriSpeech test-clean | LibriSpeech test-other|
+| ---|----| ----| ----| ---- | ----|
+| Qwen2.5-Omni-3B | \[4\] |  6.3 | 8.1 | 2.2 | 4.5 |
+| Qwen2.5-Omni-7B | \[4\] | 5.9 | 7.7 | 1.8 | 3.4 |
+| Ke-Omni-3B | ours | 11.7 | 16.1 | 1.8 | 3.8 |
+| Ke-Omni-7B | ours | 7.5 | 9.8 | **1.6** | **3.1** |
+
 ## Roadmap
 
 - [x] 2025/04
+    - [x] Performance on ASR benchmark released
     - [x] [Ke-Omni-R](https://huggingface.co/KE-Team/Ke-Omni-R) models released
     - [x] Testing codes released    
     - [x] Training codes released
