@@ -1,6 +1,7 @@
 # Ke-Omni-R: Achieving Advanced Audio Reasoning with a Concise 50-Words Think Process
 ![GitHub](https://img.shields.io/github/license/shuaijiang/Ke-Omni-R)
-[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-Ke--Omni--R-blue.svg)](https://huggingface.co/KE-Team/Ke-Omni-R/)
+[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-Ke--Omni--R--7B-blue.svg)](https://huggingface.co/KE-Team/Ke-Omni-R/)
+[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging_Face-Ke--Omni--R--3B-blue.svg)](https://huggingface.co/KE-Team/Ke-Omni-R-3B/)
 
 ## Introduction
 Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni](https://github.com/QwenLM/Qwen2.5-Omni). With only 10k post-training samples, Ke-Omni-R has achieved state-of-the-art performance on the MMAU *Test-mini* and *Test* benchmarks. Key insights from its development include:
