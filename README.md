@@ -140,7 +140,7 @@ the output should be
 
 ---
 ## Training
-### Training Data Preparation
+### Step 1: Training Data Preparation
 Ke-Omni-R was trained on two datasets:
 - **AVQA**: 5k randomly selected samples.
 - **MusicBench**: 5k randomly selected samples.
@@ -150,15 +150,28 @@ Preparation of AVQA
 python src/utils/prepare_aqa.py --input path/to/avqa/train_qa.json --audio_path path/to/avqa/audios --output data/avqa_train.json
 ```
 
-### Training Strategy
-- **Weighted GRPO Training**: Accuracy and format reward functions are weighted at a ratio of 2:1 (set rewards_weight to [2, 1]).
-- **Think Process**: A concise think process (less than 50 words) was included during training. The output format is as follows:
+Preparation of Musicbench
+```
+python src/utils/prepare_musicbench_key.py --input_file  path/to/musicbench.jsonl --out_file data/musicbench_key.jsonl
+python src/utils/prepare_musicbench_tempo.py --input_file  path/to/musicbench.jsonl --out_file data/musicbench_tempo.jsonl
+python src/utils/prepare_musicbench_time.py --input_file  path/to/musicbench.jsonl --out_file data/musicbench_time.jsonl
+```
+
+### Step 2: Training Strategy setting
+- **Weighted GRPO Training**: Accuracy and format reward functions are weighted at a ratio of 2:1 (set reward_weights to [2, 1]).
+- **Think Process**: A concise think process (less than 50 words) was included during training(set think to true, think_max_len to 50). The output format is as follows:
   ```
   <think> Thinking process (less than 50 words) </think>
   <answer> Final answer </answer>
   ```
 - **KL Divergence**: Applied during GRPO training to slightly improve performance (set beta to 0.01).
 
+
+### Step 3: Run the Training Stage
+Once the configuration is complete, you can start the training process by running the training script:
+```bash
+bash train_omni_grpo.sh
+```
 
 ## Testing on MMAU
 To evaluate the model on the MMAU Test-mini dataset, follow these steps:
