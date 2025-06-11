@@ -28,9 +28,12 @@ Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni](https:/
 - [Quickstart](#quickstart)
   - [Installation](#installation)
   - [First Demo](#first-demo)
-- [Training (codes coming soon)](#trainingcodes-coming-soon)
-  - [Training Data](#training-data-preparation)
-  - [Training Strategy](#training-strategy)
+- [Training](#training)
+   - [Step 1: Training Data Preparation](#step-1-training-data-preparation)
+      - [AVQA](#preparation-of-avqa)
+      - [MusicBench](#preparation-of-musicbench)
+   - [Step 2: Training Strategy Setting](#step-2-training-strategy-setting)
+   - [Step 3: Run the Training Stage](#step-3-run-the-training-stage)
 - [Testing on MMAU](#testing-on-mmau)
   - [Step 1: Download Dataset](#step-1-download-dataset)
   - [Step 2: Format Data](#step-2-format-data)
@@ -40,7 +43,7 @@ Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni](https:/
 
 ---
 
-## Performance: Accuracies (%) on MMAU Test-mini and Test benchmark
+## Performance: Accuracies (%)↑ on MMAU Test-mini and Test benchmark
 | Model                                 | Method                | Sound (Test-mini) | Sound (Test)  | Music (Test-mini) | Music (Test)  | Speech (Test-mini) | Speech (Test)  | Average (Test-mini) | Average (Test)  |
 |---------------------------------------|-----------------------|-----------|-------|-----------|-------|-----------|------|------------|-------|
 | -                                     | Human\*               | 86.31     | -     | 78.22     | -     | 82.17     | -     | 82.23     | -     |
@@ -59,14 +62,8 @@ Ke-Omni-R is an advanced audio reasoning model built upon [Qwen2.5-Omni](https:/
 | Ke-Omni-R(Qwen2.5-Omni-7B)            | GRPO w/o think (ours) | 69.67 | 70.57 | 67.66 | 64.00 |66.37  | 67.17 | 67.90 |67.24 |
 | Ke-Omni-R(Qwen2.5-Omni-7B)            | GRPO w/ think (ours)  | 69.37 | **71.90** | 69.46 | 67.13 |**67.87**  | 67.10 | **68.90** |**68.71** |
 
-Note:
-- \* The data are sourced from the [MMAU leaderboard](https://sakshi113.github.io/mmau_homepage/#leaderboard).
-- \[1\] Xie, Zhifei, et al. "Audio-Reasoner: Improving Reasoning Capability in Large Audio Language Models." arXiv preprint arXiv:2503.02318.  
-- \[2\] Ma, Ziyang, et al. "Audio-CoT: Exploring Chain-of-Thought Reasoning in Large Audio Language Model." arXiv preprint arXiv:2501.07246.
-- \[3\] Li, Gang, et al. "Reinforcement Learning Outperforms Supervised Fine-Tuning: A Case Study on Audio Question Answering." arXiv preprint arXiv:2503.11197
-- \[4\] Xu, Jin, et al. "Qwen2.5-Omni Technical Report." arXiv preprint arXiv:2503.20215
 
-## Performance: CER/WER (%) on ASR benchmark
+## Performance: CER/WER (%)↓ on ASR benchmark
 | Model                 | Method        |  WenetSpeech test-net | WenetSpeech test-meeting | LibriSpeech test-clean | LibriSpeech test-other|
 | ---|----| ----| ----| ---- | ----|
 | Qwen2.5-Omni-3B | \[4\] |  6.3 | 8.1 | 2.2 | 4.5 |
@@ -74,17 +71,25 @@ Note:
 | Ke-Omni-3B | ours | 11.7 | 16.1 | 1.8 | 3.8 |
 | Ke-Omni-7B | ours | 7.5 | 9.8 | **1.6** | **3.1** |
 
-## Roadmap
+Note:
+- \* The data are sourced from the [MMAU leaderboard](https://sakshi113.github.io/mmau_homepage/#leaderboard).
+- \[1\] Xie, Zhifei, et al. "Audio-Reasoner: Improving Reasoning Capability in Large Audio Language Models." arXiv preprint arXiv:2503.02318.  
+- \[2\] Ma, Ziyang, et al. "Audio-CoT: Exploring Chain-of-Thought Reasoning in Large Audio Language Model." arXiv preprint arXiv:2501.07246.
+- \[3\] Li, Gang, et al. "Reinforcement Learning Outperforms Supervised Fine-Tuning: A Case Study on Audio Question Answering." arXiv preprint arXiv:2503.11197
+- \[4\] Xu, Jin, et al. "Qwen2.5-Omni Technical Report." arXiv preprint arXiv:2503.20215
 
+## Roadmap
+- [x] 2025/05
+    - [x] Training codes released
 - [x] 2025/04
     - [x] Performance on ASR benchmark released
     - [x] [Ke-Omni-R](https://huggingface.co/KE-Team/Ke-Omni-R) models released
     - [x] Testing codes released    
     - [x] Training codes released
     - [x] Preparing data codes released
+- [ ] 2025/06
+    - [ ] Training data released
 
-- [ ] 2025/04
-    - [ ] Training data release
 
 ## Quickstart
 ### Installation
@@ -146,12 +151,12 @@ Ke-Omni-R was trained on two datasets:
 - **AVQA**: 5k randomly selected samples.
 - **MusicBench**: 5k randomly selected samples.
 
-Preparation of AVQA
+#### Preparation of AVQA
 ```
 python src/utils/prepare_aqa.py --input path/to/avqa/train_qa.json --audio_path path/to/avqa/audios --output data/avqa_train.json
 ```
 
-Preparation of Musicbench
+#### Preparation of Musicbench
 ```
 python src/utils/prepare_musicbench_key.py --input_file  path/to/musicbench.jsonl --out_file data/musicbench_key.jsonl
 python src/utils/prepare_musicbench_tempo.py --input_file  path/to/musicbench.jsonl --out_file data/musicbench_tempo.jsonl
