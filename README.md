@@ -85,7 +85,6 @@ Note:
     - [x] Performance on ASR benchmark released
     - [x] [Ke-Omni-R](https://huggingface.co/KE-Team/Ke-Omni-R) models released
     - [x] Testing codes released    
-    - [x] Training codes released
     - [x] Preparing data codes released
 - [ ] 2025/06
     - [ ] Training data released
